@@ -1,0 +1,22 @@
+Sub DoLoopExample()
+Range("e4").Select
+
+Dim i As String
+
+Do Until i = "Cottage"
+
+If ActiveCell = "R" Then
+    ActiveCell.Offset(0, 1).Select
+ElseIf ActiveCell = "D" Then
+    ActiveCell.Offset(1, 0).Select
+ElseIf ActiveCell = "L" Then
+    ActiveCell.Offset(0, -1).Select
+ElseIf ActiveCell = "U" Then
+    ActiveCell.Offset(-1, 0).Select
+    
+End If
+ 
+Loop
+
+
+End Sub
