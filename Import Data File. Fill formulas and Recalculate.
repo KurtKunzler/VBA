@@ -1,0 +1,66 @@
+Sub ImportHoldingsNew()
+
+Dim Fname As String
+Dim FPath As String
+
+FPath = ActiveWorkbook.Path & "\"
+
+    Sheets("Import Holdings Data").Select
+    Columns("A:P").ClearContents
+    ActiveWorkbook.Connections.Item(1).Delete
+    ActiveSheet.QueryTables(1).Delete
+    
+    Fname = Dir(FPath)
+    Do Until InStr(Fname, "FastPro_MLPEHU")
+        Fname = Dir
+    Loop
+    
+    Range("A1").Select
+    With ActiveSheet.QueryTables.Add(Connection:= _
+        "TEXT;" & FPath & Fname _
+        , Destination:=Range("$A$1"))
+        '.CommandType = 0
+        .Name = Fname
+        .FieldNames = True
+        .RowNumbers = False
+        .FillAdjacentFormulas = False
+        .PreserveFormatting = True
+        .RefreshOnFileOpen = False
+        .RefreshStyle = xlOverwriteCells
+        .SavePassword = False
+        .SaveData = True
+        .AdjustColumnWidth = False
+        .RefreshPeriod = 0
+        .TextFilePromptOnRefresh = False
+        .TextFilePlatform = 437
+        .TextFileStartRow = 1
+        .TextFileParseType = xlDelimited
+        .TextFileTextQualifier = xlTextQualifierDoubleQuote
+        .TextFileConsecutiveDelimiter = False
+        .TextFileTabDelimiter = True
+        .TextFileSemicolonDelimiter = False
+        .TextFileCommaDelimiter = False
+        .TextFileSpaceDelimiter = False
+        .TextFileColumnDataTypes = Array(2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+        .TextFileTrailingMinusNumbers = True
+        .Refresh BackgroundQuery:=False
+    End With
+    
+    Call FillFormulas
+    Call CalcFormulas
+    Sheets("Review Summary").Select
+    
+End Sub
+
+
+Sub FillFormulas()
+
+Dim LastRow As Long
+
+Range("A4").Select
+Selection.End(xlDown).Select
+
+LastRow = Selection.Row
+Range("Q5:S5").Select
+Selection.AutoFill Destination:=Range("Q5:S" & LastRow), Type:=xlFillDefault
+End Sub
