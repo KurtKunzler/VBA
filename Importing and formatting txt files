@@ -1,0 +1,327 @@
+Private Sub Exports_Click()
+
+Dim Fpath As String
+Dim Fname As String
+
+Fpath = ActiveWorkbook.Path & "\"
+
+Name = "SD Bal Sheet"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+    ActiveSheet.Columns("C").Select
+    Selection.EntireColumn.AutoFit
+    ActiveSheet.Cells.Select
+         Selection.Style = "Comma"
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+
+Name = "SD Mgr Info"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+         ActiveSheet.Cells.Select
+         Selection.Style = "Comma"
+
+           ActiveSheet.UsedRange.Select
+        'Deletes the entire row within the selection if the ENTIRE row contains no data.
+        Dim i As Long
+        'Turn off calculation and screenupdating to speed up the macro.
+        With Application
+        .Calculation = xlCalculationManual
+        .ScreenUpdating = False
+        'Work backwards because we are deleting rows.
+        For i = Selection.Rows.Count To 1 Step -1
+        If WorksheetFunction.CountA(Selection.Rows(i)) = 0 Then
+        Selection.Rows(i).EntireRow.Delete
+        End If
+        Next i
+        .Calculation = xlCalculationAutomatic
+        .ScreenUpdating = True
+        End With
+
+     Columns("A:L").AutoFit
+   
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+
+
+
+Name = "SD Mgr LS"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+    ActiveSheet.Range("A:H").EntireColumn.AutoFit
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+
+
+Name = "SD Prtnr Info"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+    
+    ActiveWorkbook.Worksheets(Name).Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets(Name).Sort.SortFields.Add Key:=Range( _
+        "G3"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    With ActiveWorkbook.Worksheets(Name).Sort
+        .SetRange Range("A4:Q1000")
+        .Header = xlNo
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+
+
+
+
+Name = "SD TB"
+NewPath = Fpath & Name & ".txt"
+
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+    ActiveSheet.Cells.Select
+         Selection.Style = "Comma"
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+    
+    Name = "SP Bal Sheet"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+    ActiveSheet.Columns("C").Select
+    Selection.EntireColumn.AutoFit
+    ActiveSheet.Cells.Select
+         Selection.Style = "Comma"
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+
+Name = "SP Mgr Info"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+         ActiveSheet.Cells.Select
+         Selection.Style = "Comma"
+
+           ActiveSheet.UsedRange.Select
+        'Deletes the entire row within the selection if the ENTIRE row contains no data.
+        'Turn off calculation and screenupdating to speed up the macro.
+        With Application
+        .Calculation = xlCalculationManual
+        .ScreenUpdating = False
+        'Work backwards because we are deleting rows.
+        For i = Selection.Rows.Count To 1 Step -1
+        If WorksheetFunction.CountA(Selection.Rows(i)) = 0 Then
+        Selection.Rows(i).EntireRow.Delete
+        End If
+        Next i
+        .Calculation = xlCalculationAutomatic
+        .ScreenUpdating = True
+        End With
+
+     Columns("A:L").AutoFit
+   
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+
+
+
+Name = "SP Mgr LS"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+    ActiveSheet.Range("A:H").EntireColumn.AutoFit
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+
+
+Name = "SP Prtnr Info"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+    
+    ActiveSheet.Cells.Find(What:="Series ID", After:=ActiveCell, LookIn:=xlFormulas, _
+        LookAt:=xlPart, SearchOrder:=xlByRows, SearchDirection:=xlNext, _
+        MatchCase:=False, SearchFormat:=False).Activate
+    ActiveWorkbook.Worksheets(Name).Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets(Name).Sort.SortFields.Add Key:=Range( _
+        "G3"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    With ActiveWorkbook.Worksheets(Name).Sort
+        .SetRange Range("A4:Q1000")
+        .Header = xlNo
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+
+
+
+Name = "SP TB"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+   ActiveSheet.Columns("C:Z").Select
+    Selection.Style = "Comma"
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+    
+    
+    Name = "SPO Bal Sheet"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+    ActiveSheet.Range("D:D").NumberFormat = "_(* #,##0.00_);_(* (#,##0.00);_(* "" - ""??_);_(@_)"
+    ActiveSheet.Range("C:C").EntireColumn.AutoFit
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+    
+  Name = "SPO Prtnr Info"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+    
+    ActiveSheet.Cells.Find(What:="Series ID", After:=ActiveCell, LookIn:=xlFormulas, _
+        LookAt:=xlPart, SearchOrder:=xlByRows, SearchDirection:=xlNext, _
+        MatchCase:=False, SearchFormat:=False).Activate
+    ActiveWorkbook.Worksheets(Name).Sort.SortFields.Clear
+    ActiveWorkbook.Worksheets(Name).Sort.SortFields.Add Key:=Range( _
+        "G3"), SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortNormal
+    With ActiveWorkbook.Worksheets(Name).Sort
+        .SetRange Range("A4:Q1000")
+        .Header = xlNo
+        .MatchCase = False
+        .Orientation = xlTopToBottom
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+    
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+
+
+
+Name = "SPO TB"
+NewPath = Fpath & Name & ".txt"
+
+    
+    Workbooks.OpenText Filename:= _
+       NewPath, Origin:=437, _
+        StartRow:=1, DataType:=xlDelimited, TextQualifier:=xlDoubleQuote, _
+        ConsecutiveDelimiter:=False, Tab:=True, Semicolon:=True, Comma:=False, _
+        Space:=False, Other:=False, FieldInfo:=Array(Array(1, 2), Array(2, 2), Array( _
+        3, 2)), TrailingMinusNumbers:=True
+
+   ActiveSheet.Columns("C:Z").Select
+    Selection.Style = "Comma"
+    
+    ActiveWorkbook.SaveAs Filename:=Fpath & Name, FileFormat:=xlOpenXMLWorkbook
+    ActiveWorkbook.Close
+    
+MsgBox "Complete"
+
+End Sub
