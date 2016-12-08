@@ -1,0 +1,69 @@
+
+Sub ExportCSV()
+'
+' ExportCSV Macro
+Dim MyPath As String
+Dim MyFileName As String
+'The path and file names:
+'*** replaced confidential information
+
+    MyPath = "C:\Users\******\Desktop\******"
+    MyFileName = Worksheets("CustInfo Sheet").Range("B4").Value
+If Not Right(MyPath, 1) = "\" Then MyPath = MyPath & "\"
+
+'Makes sure the filename ends with ".csv"
+If Not Right(MyFileName, 4) = ".csv" Then MyFileName = MyFileName & ".csv"
+'Copies the sheet to a new workbook:
+Sheets("CustInfo").Copy
+'The new workbook becomes Activeworkbook:
+With ActiveWorkbook
+'Saves the new workbook to given folder / filename:
+    .SaveAs Filename:= _
+        MyPath & MyFileName, _
+        FileFormat:=xlTextPrinter, _
+        CreateBackup:=False
+'Closes the file
+    .Close False
+End With
+
+'Save Details File
+
+MyFileName = Worksheets("CustInfo Sheet").Range("B5").Value
+If Not Right(MyPath, 1) = "\" Then MyPath = MyPath & "\"
+
+'Makes sure the filename ends with ".csv"
+If Not Right(MyFileName, 4) = ".csv" Then MyFileName = MyFileName & ".csv"
+'Copies the sheet to a new workbook:
+Sheets("******").Copy
+'The new workbook becomes Activeworkbook:
+With ActiveWorkbook
+'Saves the new workbook to given folder / filename:
+    .SaveAs Filename:= _
+        MyPath & MyFileName, _
+        FileFormat:=xlTextPrinter, _
+        CreateBackup:=False
+'Closes the file
+    .Close False
+End With
+'
+
+'Save Release File
+
+MyFileName = Worksheets("CustInfo Sheet").Range("B6").Value
+If Not Right(MyPath, 1) = "\" Then MyPath = MyPath & "\"
+
+'Makes sure the filename ends with ".csv"
+If Not Right(MyFileName, 4) = ".csv" Then MyFileName = MyFileName & ".csv"
+'Copies the sheet to a new workbook:
+Sheets("******").Copy
+'The new workbook becomes Activeworkbook:
+With ActiveWorkbook
+'Saves the new workbook to given folder / filename:
+    .SaveAs Filename:= _
+        MyPath & MyFileName, _
+        FileFormat:=xlTextPrinter, _
+        CreateBackup:=False
+'Closes the file
+    .Close False
+End With
+End Sub
