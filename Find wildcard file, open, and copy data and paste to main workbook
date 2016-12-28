@@ -1,0 +1,33 @@
+Sub Find_Workbook()
+
+Dim MyPath As String
+Dim Fname As String
+Dim FPath As String
+
+MyPath = ActiveWorkbook.Path
+MyName = ActiveWorkbook.Name
+
+FPath = "************************************************************"
+
+    Fname = Dir(FPath & "*CY_*.xls*")
+    
+    If Fname <> "" Then
+    Workbooks.Open FPath & Fname
+
+End If
+
+    Worksheets("TB").Activate
+    ActiveSheet.Range("B4:H4").Select
+    Range(Selection, Selection.End(xlDown)).Select
+    numRows = Selection.Rows.Count
+    numColumns = Selection.Columns.Count
+    Selection.Resize(numRows - 1, numColumns).Select
+        Selection.Copy
+        
+    Workbooks(MyName).Activate
+    
+    Worksheets("TB").Activate
+    Range("B4").PasteSpecial
+
+
+End Sub
