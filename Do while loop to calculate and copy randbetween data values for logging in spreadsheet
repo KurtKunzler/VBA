@@ -1,0 +1,54 @@
+Sub CopyPaste()
+'
+' CopyPaste Macro
+'
+Application.ScreenUpdating = False
+
+Dim count As Integer
+
+count = 152
+
+Do While Range("C" & count).Value <> ""
+
+If count > 2000 Then
+    Exit Do
+    End If
+
+count = count + 1
+
+Range("C" & count & ":" & "D" & count).Value = Range("F150:G150").Value
+
+
+
+Loop
+
+
+End Sub
+
+Sub TestResults()
+
+Dim i As Integer
+Dim count2 As Integer
+
+count2 = 153
+
+
+Do Until i = 10
+
+Call CopyPaste
+
+Range("C150:D150").Copy
+Range("J" & count2).PasteSpecial xlPasteValues
+
+
+count2 = count2 + 1
+
+i = count2 - 153
+
+Loop
+
+
+
+
+End Sub
+
